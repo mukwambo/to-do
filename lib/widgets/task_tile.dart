@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/widgets/task_check_box.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({
@@ -12,28 +13,6 @@ class TaskTile extends StatelessWidget {
         'This is a task.',
       ),
       trailing: TaskCheckbox(),
-    );
-  }
-}
-
-class TaskCheckbox extends StatefulWidget {
-  const TaskCheckbox({
-    super.key,
-  });
-
-  @override
-  State<TaskCheckbox> createState() => _TaskCheckboxState();
-}
-
-class _TaskCheckboxState extends State<TaskCheckbox> {
-  @override
-  Widget build(BuildContext context) {
-    return Checkbox(
-      activeColor: Colors.lightBlueAccent,
-      value: false,
-      onChanged: (bool? value) {
-        // When checked the task is crossed from the list
-      },
     );
   }
 }
