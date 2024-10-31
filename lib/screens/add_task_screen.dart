@@ -28,7 +28,8 @@ class AddTaskScreen extends StatelessWidget {
                 ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: Colors.lightBlueAccent), // Color when focused
+                    color: Colors.lightBlueAccent,
+                  ),
                 ),
               ),
             ),
