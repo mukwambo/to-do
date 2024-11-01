@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/widgets/task_check_box.dart';
 
 class TaskTile extends StatefulWidget {
   const TaskTile({super.key});
@@ -29,22 +30,6 @@ class _TaskTileState extends State<TaskTile> {
         checkboxState: isChecked,
         checkboxChanged: checkboxCallBack,
       ),
-    );
-  }
-}
-
-class TaskCheckbox extends StatelessWidget {
-  const TaskCheckbox(
-      {super.key, required this.checkboxState, required this.checkboxChanged});
-  final bool checkboxState;
-  final ValueChanged<bool?> checkboxChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return Checkbox(
-      activeColor: Colors.lightBlueAccent,
-      value: checkboxState,
-      onChanged: checkboxChanged,
     );
   }
 }
