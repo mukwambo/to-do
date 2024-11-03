@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_list/models/task_data.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  // Declare newTaskTitle as a class-level variable
+  String newTaskTitle = '';
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +26,14 @@ class AddTaskScreen extends StatelessWidget {
               fontSize: 30.0,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: TextField(
               autofocus: true,
               textAlign: TextAlign.center,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.grey), // Color when not focused
+                  borderSide: BorderSide(color: Colors.grey),
                 ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -32,6 +41,9 @@ class AddTaskScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              onChanged: (newTaskText) {
+                newTaskTitle = newTaskText;
+              },
             ),
           ),
           TextButton(
@@ -45,7 +57,14 @@ class AddTaskScreen extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Onclick add new task to the task list
+              if (newTaskTitle.isNotEmpty) {
+                Provider.of<TaskData>(context, listen: false)
+                    .addTask(newTaskTitle);
+                // Close the bottom sheet after adding
+                Navigator.pop(context);
+              } else {
+                print("Please enter a task");
+              }
             },
             child: const Text(
               'Add',
@@ -53,7 +72,7 @@ class AddTaskScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
